@@ -20,7 +20,9 @@
   - [分流规则 Rules](#分流规则-rules)
   - [脚本 Scripts](#脚本-scripts)
   - [DNS 配置 DNS](#dns-配置-dns)
+- [可用模块 Available Modules](#可用模块-available-modules)
 - [更新 Updating](#更新-updating)
+- [鸣谢 Acknowledgements](#鸣谢-acknowledgements)
 - [许可证 License](#许可证-license)
 
 ## 仓库结构 Repository Structure
@@ -33,6 +35,7 @@ proxy-configs/
 │   ├── reject/         #   广告拦截 Reject / ad-blocking
 │   └── apps/           #   常见应用分流 Per-app
 ├── modules/            # 重写模块 Shadowrocket modules (.sgmodule)
+│   └── youtube_adblock.sgmodule
 ├── scripts/            # JavaScript 脚本 Scripts (.js)
 ├── dns/                # DNS 配置 DNS configuration
 ├── config/             # 完整配置模板 Full config templates
@@ -69,7 +72,7 @@ proxy-configs/
 `配置 → 模块（Modules）→ 添加模块`，填入模块的 `.sgmodule` 链接，例如：
 
 ```text
-<RAW_BASE>/modules/<module-name>.sgmodule
+<RAW_BASE>/modules/youtube_adblock.sgmodule
 ```
 
 ### 分流规则 Rules
@@ -99,11 +102,26 @@ example = type=http-response,pattern=^https?://example\.com/api,script-path=<RAW
 > ⚠️ 本仓库**不提供任何代理节点或机场订阅**，仅提供规则与配置。节点需自行准备。
 > This repo does **not** provide any proxy nodes/servers — bring your own.
 
+## 可用模块 Available Modules
+
+| 模块 Module | 说明 Description | 链接 URL |
+| ----------- | ---------------- | -------- |
+| YouTube 去广告增强 | 去广告 / 后台播放 / 画中画(PIP) | `<RAW_BASE>/modules/youtube_adblock.sgmodule` |
+
+> YouTube 模块基于 [Maasea](https://github.com/Maasea/sgmodule) 的开源模块整理为个人配置，核心脚本版权归原作者所有，经原始链接引用。
+> The YouTube module is adapted from [Maasea](https://github.com/Maasea/sgmodule)'s open-source work; the core script remains referenced from the original author and is credited accordingly.
+
 ## 更新 Updating
 
 规则与模块通过远程链接引用，Shadowrocket 会按设定的间隔自动更新；也可在客户端中手动「更新」。
 
 Rules and modules are referenced remotely and refresh automatically, or can be updated manually.
+
+## 鸣谢 Acknowledgements
+
+部分规则与脚本思路参考自社区开源项目，已在对应文件中注明。如有引用未注明，欢迎提 Issue 指正。
+
+Some rules and scripts are adapted from community open-source projects, credited in the relevant files. Please open an issue if attribution is missing.
 
 ## 许可证 License
 
