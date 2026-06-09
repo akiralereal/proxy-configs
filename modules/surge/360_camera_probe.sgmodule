@@ -1,0 +1,9 @@
+#!name=360 摄像机抓包探针（临时）
+#!desc=临时诊断模块：记录所有 *.360.cn 请求的 URL 与 JSON 字段名，用于定位真正的广告接口。确认后请删除本模块。适用于 Shadowrocket / Surge。
+#!author=Akira
+
+[Script]
+360摄像机-探针 = type=http-response,pattern=^https?:\/\/[\w.-]*\.360\.cn\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/akiralereal/proxy-configs/main/scripts/360_camera_probe.js
+
+[MITM]
+hostname = %APPEND% *.360.cn
