@@ -1,0 +1,20 @@
+#!name=YouTube 去广告（自建脚本）
+#!desc=自建：删除 YouTube InnerTube API 响应中的广告字段（视频广告 adPlacements、信息流广告 renderer 等），并拦截广告/打点请求。脚本为原创实现，仅处理 JSON 响应。
+#!author=Akira
+
+[Rule]
+# 阻断 QUIC/UDP，强制走 TCP，确保 MITM 能解密
+AND,((DOMAIN-SUFFIX,youtube.com),(PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,youtubei.googleapis.com),(PROTOCOL,UDP)),REJECT
+
+[URL Rewrite]
+# 拦截广告与打点请求
+^https?:\/\/(www|s)\.youtube\.com\/api\/stats\/ads _ reject-200
+^https?:\/\/(www|s)\.youtube\.com\/(pagead|ptracking) _ reject-200
+^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext _ reject-200
+
+[Script]
+youtube-adblock = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(player|browse|next|search|guide|reel\/reel_watch_sequence),requires-body=1,max-size=-1,script-path=https://raw.githubusercontent.com/akiralereal/proxy-configs/main/scripts/youtube_adblock.js
+
+[MITM]
+hostname = %APPEND% www.youtube.com,s.youtube.com,youtubei.googleapis.com
