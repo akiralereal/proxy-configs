@@ -37,6 +37,7 @@ proxy-configs/
 ├── modules/            # 重写模块 Shadowrocket modules (.sgmodule)
 │   └── youtube_adblock.sgmodule
 ├── scripts/            # JavaScript 脚本 Scripts (.js)
+├── vendor/             # 第三方脚本镜像（保留署名）Third-party mirrors (credited)
 ├── dns/                # DNS 配置 DNS configuration
 ├── config/             # 完整配置模板 Full config templates
 └── README.md
@@ -109,10 +110,10 @@ example = type=http-response,pattern=^https?://example\.com/api,script-path=<RAW
 | YouTube 去广告增强 | 去广告 / 后台播放 / 画中画(PIP) | `<RAW_BASE>/modules/youtube_adblock.sgmodule` |
 | YouTube 去广告（自建脚本） | 去广告（原创脚本，仅处理 JSON 响应） | `<RAW_BASE>/modules/youtube_adblock_diy.sgmodule` |
 
-> 「YouTube 去广告增强」基于 [Maasea](https://github.com/Maasea/sgmodule) 的开源模块整理，核心脚本版权归原作者所有，经原始链接引用。
+> 「YouTube 去广告增强」基于 [Maasea](https://github.com/Maasea/sgmodule) 的开源模块整理，核心脚本版权归原作者所有；为防上游失效，脚本已**镜像备份**至 [`vendor/youtube.response.js`](./vendor/youtube.response.js)（未改动代码、保留署名），模块指向本地镜像。
 > 「YouTube 去广告（自建脚本）」的脚本 [`scripts/youtube_adblock.js`](./scripts/youtube_adblock.js) 为原创实现。
 >
-> The "enhanced" module is adapted from [Maasea](https://github.com/Maasea/sgmodule); its core script is referenced from the original author and credited accordingly. The "DIY" module uses an original script written for this repo.
+> The "enhanced" module is adapted from [Maasea](https://github.com/Maasea/sgmodule). Its core script is **mirrored** at [`vendor/youtube.response.js`](./vendor/youtube.response.js) (unmodified, credited) so it keeps working if upstream disappears; the module points to this local mirror. The "DIY" module uses an original script written for this repo.
 
 ## 更新 Updating
 

@@ -1,5 +1,5 @@
 #!name=YouTube 去广告增强
-#!desc=YouTube 去广告 / 后台播放 / 画中画(PIP)。基于 Maasea 的开源模块整理为个人配置；去广告与后台播放的核心响应脚本版权归原作者 Maasea 所有，本模块经原始链接引用，未复制其代码。
+#!desc=YouTube 去广告 / 后台播放 / 画中画(PIP)。基于 Maasea 的开源模块整理为个人配置；核心响应脚本版权归原作者 Maasea 所有，已镜像备份至本仓库 vendor/ 以防上游失效，脚本指向本地镜像。
 #!author=Maasea（原模块与脚本作者）· Akira（个人配置整理）
 #!homepage=https://github.com/akiralereal/proxy-configs
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
@@ -18,7 +18,7 @@ AND,((DOMAIN,youtubei.googleapis.com),(PROTOCOL,UDP)),REJECT
 ^https?:\/\/s\.youtube\.com\/api\/stats\/qoe\?adcontext _ reject-200
 
 [Script]
-youtube.response = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch),requires-body=1,max-size=-1,binary-body-mode=1,script-path=https://raw.githubusercontent.com/Maasea/sgmodule/master/Script/Youtube/youtube.response.js,argument="{"lyricLang":"","captionLang":"","blockUpload":false,"blockImmersive":false,"debug":false}"
+youtube.response = type=http-response,pattern=^https:\/\/youtubei\.googleapis\.com\/youtubei\/v1\/(browse|next|player|search|reel\/reel_watch_sequence|guide|account\/get_setting|get_watch),requires-body=1,max-size=-1,binary-body-mode=1,script-path=https://raw.githubusercontent.com/akiralereal/proxy-configs/main/vendor/youtube.response.js,argument="{"lyricLang":"","captionLang":"","blockUpload":false,"blockImmersive":false,"debug":false}"
 
 [MITM]
 hostname = %APPEND% -redirector*.googlevideo.com,*.googlevideo.com,www.youtube.com,s.youtube.com,youtubei.googleapis.com
